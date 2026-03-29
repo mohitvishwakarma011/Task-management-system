@@ -1,0 +1,6 @@
+@TMS.api_HostAddress = http://localhost:5027
+
+GET {{TMS.api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
