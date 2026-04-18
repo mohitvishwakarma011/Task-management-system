@@ -1,6 +1,9 @@
 
 using Microsoft.EntityFrameworkCore;
+using TMS.api.Extensions;
+using TMS.api.Mappings;
 using TMS.api.Persistance;
+using TMS.api.Shared;
 
 namespace TMS.api
 {
@@ -17,9 +20,19 @@ namespace TMS.api
                 options.UseSqlServer(connString);
             });
             builder.Services.AddControllers();
+            builder.Services.AddAutoMapper(cfg =>
+            {
+                cfg.AddProfile<MappingProfiles>();
+                cfg.AllowNullCollections = true;
+            }, typeof(MappingProfiles));
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddAuthentication();
+            builder.Services.ConfigureIdentity();
+            builder.Services.ConfigureJWT(builder.Configuration);
+            builder.Services.ConfigureServices();
+            builder.Services.ConfigureRepositories();
 
             var app = builder.Build();
 
@@ -31,9 +44,9 @@ namespace TMS.api
             }
 
             app.UseHttpsRedirection();
-
+            app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseMiddleware<ExceptionHandler>();
 
             app.MapControllers();
 
