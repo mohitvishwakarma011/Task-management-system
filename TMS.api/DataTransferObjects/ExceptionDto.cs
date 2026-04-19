@@ -5,7 +5,12 @@ namespace TMS.api.DataTransferObjects
     public class ExceptionDto
     {
         public int StatusCode { get; set; }
-        public string Message { get; set; }
-        public override string ToString() => JsonSerializer.Serialize(this);
+        public string? Message { get; set; }
+
+        public ExceptionDto(int statusCode, string? message)
+        {
+            StatusCode = statusCode;
+            Message = message;
+        }
     }
 }

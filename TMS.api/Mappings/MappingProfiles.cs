@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using TMS.api.DataTransferObject.User;
 using TMS.api.DataTransferObjects;
+using TMS.api.DataTransferObjects.User;
 using TMS.api.Entities;
 
 namespace TMS.api.Mappings

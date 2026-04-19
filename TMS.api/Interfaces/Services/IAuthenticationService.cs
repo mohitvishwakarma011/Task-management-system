@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using TMS.api.DataTransferObject.User;
+using TMS.api.DataTransferObjects.User;
 
 namespace TMS.api.Interfaces.Services
 {

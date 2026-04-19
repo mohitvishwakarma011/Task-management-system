@@ -57,6 +57,7 @@ namespace TMS.api.Persistance.EntityConfigs
             builder.HasOne(x => x.Category)
                 .WithMany()
                 .HasForeignKey(x => x.CtgryId)
+                .IsRequired(false)
                 .OnDelete(DeleteBehavior.NoAction); //Will use soft delete
         }
     }

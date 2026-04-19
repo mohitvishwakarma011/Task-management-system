@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using TMS.api.Extensions;
 using TMS.api.Mappings;
 using TMS.api.Persistance;
-using TMS.api.Shared;
+using TMS.api.Shared.ExceptionMiddleware;
 
 namespace TMS.api
 {

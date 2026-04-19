@@ -11,7 +11,7 @@ namespace TMS.api.Entities
         public DateTime DueDate { get; set; }
         public Guid AssignedToUserId { get; set; }
         public bool IsDeleted { get; set; }
-        public int CtgryId { get; set; }
-        public Category Category { get; set; } = null!;
+        public int? CtgryId { get; set; }
+        public Category? Category { get; set; } = null!;
     }
 }

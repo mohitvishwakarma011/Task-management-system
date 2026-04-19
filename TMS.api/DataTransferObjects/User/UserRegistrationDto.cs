@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TMS.api.DataTransferObject.User
+namespace TMS.api.DataTransferObjects.User
 {
     public record UserRegistrationDto
     {

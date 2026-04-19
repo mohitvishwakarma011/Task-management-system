@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
-using TMS.api.DataTransferObject.User;
+using TMS.api.DataTransferObjects.User;
 using TMS.api.Entities;
 using TMS.api.Interfaces.Services;
 

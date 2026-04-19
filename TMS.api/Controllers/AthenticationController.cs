@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TMS.api.DataTransferObject.User;
+using TMS.api.DataTransferObjects.User;
 using TMS.api.Interfaces.Services;
 
 namespace TMS.api.Controllers

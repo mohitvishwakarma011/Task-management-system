@@ -10,6 +10,6 @@
         public DateTime DueDate { get; set; }
         public Guid? AssignedToUserId { get; set; }
         public bool IsDeleted { get; set; } = false;
-        public int CtgryId { get; set; }
+        public int? CtgryId { get; set; }
     }
 }
