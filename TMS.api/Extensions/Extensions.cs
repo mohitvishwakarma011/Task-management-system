@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using TMS.api.Entities;
+using TMS.api.Implementations.Repositories;
 using TMS.api.Implementations.Services;
+using TMS.api.Interfaces.Repositories;
 using TMS.api.Interfaces.Services;
 using TMS.api.Persistance;
 
@@ -11,14 +13,21 @@ namespace TMS.api.Extensions
 {
     public static class Extensions
     {
+        public static void ConfigureUnitOfWork(this IServiceCollection services)
+        {
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+        }
         public static void ConfigureRepositories(this IServiceCollection services)
         {
-
+            services.AddScoped<ITaskItemRepository, TaskItemRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
         }
 
         public static void ConfigureServices(this IServiceCollection services)
         {
             services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<ITaskItemService,TaskItemService>();
+            services.AddScoped<ICategoryService, CategoryService>();
         }
 
         public static void ConfigureIdentity(this IServiceCollection services)

@@ -20,8 +20,8 @@ namespace TMS.api.Shared
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong: {ex.Message}");
-                throw new Exception(ex.Message);
+                _logger.LogError($"Something went wrong: {ex.InnerException.Message}");
+                throw new Exception(ex.InnerException.Message);
             }
         }
     }

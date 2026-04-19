@@ -33,6 +33,7 @@ namespace TMS.api
             builder.Services.ConfigureJWT(builder.Configuration);
             builder.Services.ConfigureServices();
             builder.Services.ConfigureRepositories();
+            builder.Services.ConfigureUnitOfWork();
 
             var app = builder.Build();
 

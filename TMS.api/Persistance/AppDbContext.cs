@@ -7,7 +7,7 @@ namespace TMS.api.Persistance
 {
     public class AppDbContext : IdentityDbContext<User>
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
 
         }
@@ -21,5 +21,18 @@ namespace TMS.api.Persistance
 
         public DbSet<TaskItem> Tasks { get; set; }
         public DbSet<Category> Category { get; set; }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            var extries = ChangeTracker.Entries<Audit>();
+            foreach (var entry in ChangeTracker.Entries<Audit>())
+            {
+                if(entry.State == EntityState.Added)
+                {
+                    entry.Entity.CreatedAt = DateTime.UtcNow;
+                }
+            }
+            return base.SaveChangesAsync(cancellationToken);
+        }
     }
 }
