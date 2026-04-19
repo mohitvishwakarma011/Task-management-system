@@ -23,6 +23,19 @@ namespace TMS.api.Implementations.Services
             _unitOfWork = unitOfWork;
         }
 
+        public async Task<IdDto<Guid>> ChangeStatus(ChangeStatusDto statusDto)
+        {
+            var task = await _taskItemRepository.GetTaskByIdAsync(statusDto.TaskID);
+            if (task == null || task.IsDeleted)
+            {
+                throw new InvalidOperationException($"Task item not found with id {statusDto.TaskID}");
+            }
+            task.Status = statusDto.Status;
+            _taskItemRepository.UpdateTask(task);
+            await _unitOfWork.SaveChangesAsync();
+            return new IdDto<Guid> { Id = task.Id };
+        }
+
         public async Task<IdDto<Guid>> CreateTaskItem(TaskItemDto dto)
         {
             var mappedEntity = _mapper.Map<TaskItem>(dto);
@@ -59,9 +72,13 @@ namespace TMS.api.Implementations.Services
             return dto;
         }
 
-        public async Task<IList<TaskItemDto>> GetTasksAsync()
+        public async Task<IList<TaskItemDto>> GetTasksAsync(int categoryID)
         {
             var result = await _taskItemRepository.GetTasksAsync();
+            if(categoryID > 0)
+            {
+                result = result.Where(task => task.CtgryId == categoryID).ToList();
+            }
             return _mapper.Map<IList<TaskItemDto>>(result);
         }
 

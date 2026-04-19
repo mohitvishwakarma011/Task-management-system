@@ -6,5 +6,6 @@ namespace TMS.api.Interfaces.Services
     {
         Task<IdDto<int>> AddCategoryAsync(CategoryDto dto);
         Task<IList<IdDto<int>>> BulkInsertCategory(IList<CategoryDto> dto);
+        Task<bool> DoesExistAsync(int categoryID);
     }
 }

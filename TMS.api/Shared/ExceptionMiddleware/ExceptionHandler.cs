@@ -32,6 +32,7 @@ namespace TMS.api.Shared.ExceptionMiddleware
             ExceptionDto response = exception switch
             {
                 BadRequestException _ => new ExceptionDto((int)HttpStatusCode.BadRequest, exception.Message),
+                InvalidOperationException _ => new ExceptionDto((int)HttpStatusCode.BadRequest, exception.Message),
                 ApplicationException _ => new ExceptionDto((int)HttpStatusCode.BadRequest, "Application exception occurred."),
                 KeyNotFoundException _ => new ExceptionDto((int)HttpStatusCode.NotFound, "The request key not found."),
                 UnauthorizedAccessException _ => new ExceptionDto((int)HttpStatusCode.Unauthorized, "Unauthorized."),

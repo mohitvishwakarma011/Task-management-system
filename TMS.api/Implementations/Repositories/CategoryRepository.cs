@@ -1,4 +1,5 @@
-﻿using TMS.api.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using TMS.api.Entities;
 using TMS.api.Interfaces.Repositories;
 using TMS.api.Persistance;
 
@@ -19,6 +20,11 @@ namespace TMS.api.Implementations.Repositories
         public void BulkInsertCategory(IList<Category> categoryList)
         {
             _appDbContext.Category.AddRange(categoryList);
+        }
+
+        public async Task<bool> DoesExistAsync(int categoryID)
+        {
+            return await _appDbContext.Category.AsNoTracking().AnyAsync(cat => cat.Id == categoryID);
         }
     }
 }

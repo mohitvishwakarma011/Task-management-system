@@ -41,5 +41,10 @@ namespace TMS.api.Implementations.Services
             await _unitOfWork.SaveChangesAsync();
             return entityList.Select(x => new IdDto<int> { Id = x.Id }).ToList();
         }
+
+        public async Task<bool> DoesExistAsync(int categoryID)
+        {
+            return await _categoryRepository.DoesExistAsync(categoryID);
+        }
     }
 }

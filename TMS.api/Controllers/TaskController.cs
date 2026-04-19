@@ -28,9 +28,9 @@ namespace TMS.api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetTasks()
+        public async Task<IActionResult> GetTasks([FromQuery]int categoryID)
         {
-            return Ok(await _taskItemService.GetTasksAsync());
+            return Ok(await _taskItemService.GetTasksAsync(categoryID));
         }
 
         [HttpPut]
@@ -43,6 +43,13 @@ namespace TMS.api.Controllers
         public async Task<IActionResult> DeleteTask([FromRoute] Guid id)
         {
             return Ok(await _taskItemService.DeleteTaskAsync(id));
+        }
+
+        [HttpPost("change-status")]
+        [ProducesResponseType(typeof(IdDto<Guid>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> ChangeStatus([FromBody] ChangeStatusDto dto)
+        {
+            return Ok(await _taskItemService.ChangeStatus(dto));
         }
     }
 }

@@ -6,5 +6,6 @@ namespace TMS.api.Interfaces.Repositories
     {
         void AddCategory(Category category);
         void BulkInsertCategory(IList<Category> categoryList);
+        Task<bool> DoesExistAsync(int categoryID);
     }
 }

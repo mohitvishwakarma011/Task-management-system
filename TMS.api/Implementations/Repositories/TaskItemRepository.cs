@@ -25,7 +25,7 @@ namespace TMS.api.Implementations.Repositories
 
         public async Task<IList<TaskItem>> GetTasksAsync()
         {
-            return await _appDbContext.Tasks.Where(t => !t.IsDeleted).ToListAsync();
+            return await _appDbContext.Tasks.AsNoTracking().Where(t => !t.IsDeleted).ToListAsync();
         }
 
         public void UpdateTask(TaskItem task)
